@@ -1,0 +1,31 @@
+# MCP (Model Context Protocol) Configuration
+# This file configures external integrations for the Smart Recruiter Agent
+
+integrations:
+  # Database integration for candidate/job storage
+  database:
+    enabled: true
+    provider: sqlite  # Options: sqlite, postgresql, mongodb
+    connection_string: ${DATABASE_URL:-sqlite:///./data/recruiter.db}
+
+  # Calendar integration for interview scheduling
+  calendar:
+    enabled: false
+    provider: google  # Options: google, outlook
+    credentials_path: ./credentials/google.json
+
+  # Slack integration for team notifications
+  slack:
+    enabled: false
+    bot_token: ${SLACK_BOT_TOKEN}
+    channel: recruiting
+
+  # Email integration for candidate communication
+  email:
+    enabled: false
+    provider: smtp  # Options: smtp, gmail, sendgrid
+    host: ${SMTP_HOST:-smtp.gmail.com}
+    port: ${SMTP_PORT:-587}
+    username: ${SMTP_USER}
+    password: ${SMTP_PASSWORD}
+    from_address: ${EMAIL_FROM:-noreply@example.com}
